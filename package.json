@@ -1,0 +1,36 @@
+{
+  "name": "multi-push-alert",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:prd": "electron dist/main.js",
+    "prebuild": "rimraf dist",
+    "build": "ts-node scripts/webpack/processes.ts"
+  },
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/jest": "^25.2.3",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/webpack": "^4.41.15",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.0.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.0.0",
+    "ts-loader": "^7.0.5",
+    "ts-node": "^8.10.2",
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.9.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "electron": "^9.0.0",
+    "electron-builder": "^22.7.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
