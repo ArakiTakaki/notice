@@ -10,7 +10,7 @@ export const PATH = {
   },
   TYPESCRIPTS: {
     ELECTRON: path.resolve(BASE, 'src', 'electron', 'index.ts'),
-    BROWSER: path.resolve(BASE, 'src', 'client','index.ts'),
+    BROWSER: path.resolve(BASE, 'src', 'client','index.tsx'),
   },
   HTML: {
     BROWSER: path.resolve(BASE, 'src', 'client','index.html'),
