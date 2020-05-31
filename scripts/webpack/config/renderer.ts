@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import devServer from 'webpack-dev-server';
-import { PATH } from '../../constants/dirPath';
+import { PATH } from '../../../constants/dirPath';
 const HtmlPlugin = require('html-webpack-plugin');
 
 /**

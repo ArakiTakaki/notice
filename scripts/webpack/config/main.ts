@@ -1,5 +1,5 @@
 import webpack from 'webpack';
-import { PATH } from '../../constants/dirPath';
+import { PATH } from '../../../constants/dirPath';
 
 
 /**

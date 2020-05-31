@@ -1,8 +1,8 @@
 import command from './util/commands';
-import { webpackRender } from './renderer';
-import { webpackBrowser } from './main';
-import { devServerProcess } from './devServerProsses';
-import { buildProcess } from './buildProcess';
+import { webpackRender } from './config/renderer';
+import { webpackBrowser } from './config/main';
+import { devServerProcess } from './process/devServerProsses';
+import { buildProcess } from './process/buildProcess';
 import { logger, LOG_LEVEL } from '../../utils/logger/logger';
 import { exec } from 'child_process';
 const isDevelopment: boolean = command.development;
