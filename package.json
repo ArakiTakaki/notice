@@ -8,9 +8,9 @@
     "start:prd": "electron dist/main.js",
     "prebuild": "rimraf dist",
     "build": "ts-node scripts/webpack/index.ts",
-    "build:win": "electron-builder --windows --dir out",
-    "build:mac": "electron-builder --mac --dir out",
-    "build:linux": "electron-builder --mac --dir out",
+    "build:win": "electron-builder --windows",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
     "release": "ts-node scripts/release/index.ts"
   },
   "devDependencies": {
