@@ -1,8 +1,10 @@
-import {app, BrowserWindow} from 'electron';
+import electron, {app, BrowserWindow} from 'electron';
 import path from 'path';
+import * as isDev from 'electron-is-dev';
+import 'electron-reload';
 
 // window.gcをonにする
-app.commandLine.appendSwitch('js-flags', '--expose-gc');
+//app.commandLine.appendSwitch('js-flags', '--expose-gc');
 
 // 画面の拡大縮小制御
 // webFrame.setZoomLevelLimets(1, 1);
@@ -30,8 +32,10 @@ app.on("ready", () => {
     x: 0,
     y: 0,
   });
-
-  mainWindow.loadFile(path.resolve('dist', 'index.html'));
+  mainWindow.loadURL(
+    isDev ? 'http://localhost:3000'
+      : path.resolve('dist', 'index.html')
+  );
   mainWindow.setMenu(null);
   mainWindow.webContents.openDevTools();
 
