@@ -9,9 +9,12 @@
     "prebuild": "rimraf dist",
     "build": "ts-node scripts/webpack/index.ts",
     "build:win": "electron-builder --windows --dir out",
-    "build:mac": "electron-builder --mac --dir out"
+    "build:mac": "electron-builder --mac --dir out",
+    "build:linux": "electron-builder --mac --dir out",
+    "release": "ts-node scripts/release/index.ts"
   },
   "devDependencies": {
+    "@types/child-process-promise": "^2.2.1",
     "@types/commander": "^2.12.2",
     "@types/electron": "^1.6.10",
     "@types/jest": "^25.2.3",
@@ -19,9 +22,12 @@
     "@types/react-dom": "^16.9.8",
     "@types/webpack": "^4.41.15",
     "@types/webpack-dev-server": "^3.11.0",
+    "child-process-promise": "^2.2.1",
     "commander": "^5.1.0",
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
+    "electron": "^9.0.0",
+    "electron-builder": "^22.7.0",
     "electron-is-dev": "^1.2.0",
     "electron-reload": "^1.5.0",
     "file-loader": "^6.0.0",
@@ -35,8 +41,6 @@
     "typescript": "^3.9.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
-    "electron": "^9.0.0",
-    "electron-builder": "^22.7.0",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
@@ -51,6 +55,9 @@
       "target": "zip"
     },
     "mac": {
+      "target": "zip"
+    },
+    "linux": {
       "target": "zip"
     },
     "files": [
