@@ -1,7 +1,7 @@
-import electron, {app, BrowserWindow} from 'electron';
-import path from 'path';
-import * as isDev from 'electron-is-dev';
-import 'electron-reload';
+import {app, BrowserWindow} from 'electron';
+// import path from 'path';
+// import * as isDev from 'electron-is-dev';
+// import 'electron-reload';
 
 // window.gcをonにする
 //app.commandLine.appendSwitch('js-flags', '--expose-gc');
@@ -32,10 +32,10 @@ app.on("ready", () => {
     x: 0,
     y: 0,
   });
-  mainWindow.loadURL(
-    isDev ? 'http://localhost:3000'
-      : path.resolve('dist', 'index.html')
-  );
+  // mainWindow.loadURL(
+  //   isDev ? 'http://localhost:3000'
+  //     : path.resolve('dist', 'index.html')
+  // );
   mainWindow.setMenu(null);
   mainWindow.webContents.openDevTools();
 

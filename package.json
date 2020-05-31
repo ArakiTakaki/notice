@@ -4,11 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"tsc ./src/electron/index.ts -w\" \"cross-env NODE_ENV=dev nodemon --exec \"\"wait-on http://localhost:3000 && electron src/index.js\"\"",
-    "start:client": "",
+    "start": "ts-node scripts/webpack/index.ts -d",
     "start:prd": "electron dist/main.js",
     "prebuild": "rimraf dist",
-    "build": "ts-node scripts/webpack/processes.ts"
+    "build": "ts-node scripts/webpack/index.ts"
   },
   "devDependencies": {
     "@types/commander": "^2.12.2",

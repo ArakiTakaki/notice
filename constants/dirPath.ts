@@ -4,6 +4,7 @@ const BASE = path.resolve();
 export const PATH = {
   WEBPACK: {
     OUTPUT_PATH: path.resolve(BASE, 'dist'),
+    ELECTRON_DEV: path.resolve(BASE, 'src', 'electron'),
   },
   LOG: {
     OUTPUT_PATH: path.resolve(BASE, 'log'),

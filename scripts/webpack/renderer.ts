@@ -1,15 +1,14 @@
 import webpack from 'webpack';
 import devServer from 'webpack-dev-server';
 import { PATH } from '../../constants/dirPath';
-import { isDev } from '../../constants';
 const HtmlPlugin = require('html-webpack-plugin');
 
 /**
  * RendererProcessのタスク
  */
-export const webpackRender: webpack.Configuration & {
+export const webpackRender = (isDev: boolean): webpack.Configuration & {
   devServer: devServer.Configuration;
-} = {
+} => ({
   name: 'electron:renderer',
   mode: isDev ? 'development' : 'production',
   entry: {
@@ -59,4 +58,4 @@ export const webpackRender: webpack.Configuration & {
     port: 3000,
     http2: true,
   }
-};
+});
