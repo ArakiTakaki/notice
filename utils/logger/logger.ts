@@ -34,8 +34,9 @@ export const logger = (level: LOG_LEVEL, logName: string, logTarget: string, tex
         return 'NONE';
     }
   })();
-  const data = `${status} \t ${date} ${time} ${logName} ${logTarget} ${text}`;
+  const data = `${status}\t${date} ${time} ${logName} ${logTarget} ${text}`;
   if (isOutput) {
+    console.log(data);
     if (level !== LOG_LEVEL.DEBUG && level !== LOG_LEVEL.TRACE && level !== LOG_LEVEL.INFO) return;
     try { fs.mkdirSync(PATH.LOG.OUTPUT_PATH) } catch (err) {}
     fs.appendFileSync(resolve(PATH.LOG.OUTPUT_PATH, `${date}.log`), `${data}\n`);
