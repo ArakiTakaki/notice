@@ -15,7 +15,7 @@ export const webpackRender = (isDev: boolean): webpack.Configuration & {
     renderer: PATH.TYPESCRIPTS.BROWSER,
   },
   devtool: isDev ? 'inline-source-map' : undefined,
-  target: 'electron-renderer',
+  target: 'web',
   output: {
     path: PATH.WEBPACK.OUTPUT_PATH,
     filename: '[name].js',

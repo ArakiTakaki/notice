@@ -1,7 +1,7 @@
 import {app, BrowserWindow} from 'electron';
-// import path from 'path';
-// import * as isDev from 'electron-is-dev';
-// import 'electron-reload';
+import isDev from 'electron-is-dev';
+import path from 'path';
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
 
 // window.gcをonにする
 //app.commandLine.appendSwitch('js-flags', '--expose-gc');
@@ -32,12 +32,17 @@ app.on("ready", () => {
     x: 0,
     y: 0,
   });
-  // mainWindow.loadURL(
-  //   isDev ? 'http://localhost:3000'
-  //     : path.resolve('dist', 'index.html')
-  // );
+  if (isDev) {
+    mainWindow.loadURL('http://localhost:3000');
+  } else {
+    mainWindow.loadFile('dist/index.html');
+  }
+
   mainWindow.setMenu(null);
-  mainWindow.webContents.openDevTools();
+  // dev 環境
+  if (isDev) {
+    mainWindow.webContents.openDevTools();
+  }
 
   mainWindow.on("closed",function(){
   	app.quit();

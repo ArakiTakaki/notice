@@ -14,7 +14,7 @@ const devTask = async () => {
     await devServerProcess(),
     await buildProcess(main, true),
   ]).then(() => {
-    exec('yarn electron src/electron/main.js');
+    exec('yarn electron src/electron/index.js');
   }).catch(() => {
     logger(LOG_LEVEL.FATAL, 'DEV_SERVER_PROCESS', 'index.ts', 'fail to build')
   })

@@ -1,13 +1,15 @@
 {
   "name": "multi-push-alert",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "start": "ts-node scripts/webpack/index.ts -d",
     "start:prd": "electron dist/main.js",
     "prebuild": "rimraf dist",
-    "build": "ts-node scripts/webpack/index.ts"
+    "build": "ts-node scripts/webpack/index.ts",
+    "build:win": "electron-builder --windows --dir out",
+    "build:mac": "electron-builder --mac --dir out"
   },
   "devDependencies": {
     "@types/commander": "^2.12.2",
@@ -33,12 +35,28 @@
     "typescript": "^3.9.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
+    "electron": "^9.0.0",
+    "electron-builder": "^22.7.0",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "electron": "^9.0.0",
-    "electron-builder": "^22.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "build": {
+    "appId": "multi-push-alert",
+    "productName": "MPA - multi-push-alert",
+    "copyright": "Copyright ArakiTakaki. All rights reserved",
+    "win": {
+      "target": "zip"
+    },
+    "mac": {
+      "target": "zip"
+    },
+    "files": [
+      "./dist",
+      "./dist/index.html",
+      "./dist/renderer.js"
+    ]
   }
 }

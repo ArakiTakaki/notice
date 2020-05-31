@@ -9,12 +9,12 @@ export const webpackBrowser = (isDev:boolean): webpack.Configuration => ({
   name: 'electron:main',
   mode: isDev ? 'development' : 'production',
   entry: {
-    main: PATH.TYPESCRIPTS.ELECTRON,
+    index: PATH.TYPESCRIPTS.ELECTRON,
   },
   devtool: isDev ? 'inline-source-map' : undefined,
   target: 'electron-main',
   output: {
-    path: isDev ? PATH.WEBPACK.ELECTRON_DEV : PATH.WEBPACK.OUTPUT_PATH ,
+    path: isDev ? PATH.WEBPACK.ELECTRON_DEV : PATH.WEBPACK.OUTPUT_PATH,
     filename: '[name].js',
   },
   module: {

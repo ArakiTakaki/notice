@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 const Hello: React.SFC = () => {
   return (
     <div>
-      <h1>hogehoge</h1>
+      <h1>hogeaaahoge</h1>
     </div>
   )
 };
