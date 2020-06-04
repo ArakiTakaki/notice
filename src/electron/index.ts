@@ -1,6 +1,5 @@
 import {app, BrowserWindow} from 'electron';
 import isDev from 'electron-is-dev';
-import path from 'path';
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
 
 // window.gcをonにする
