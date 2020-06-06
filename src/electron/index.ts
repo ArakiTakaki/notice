@@ -1,8 +1,12 @@
 import { app, BrowserWindow } from 'electron';
-import isDev from 'electron-is-dev';
 import { httpLikeIPC } from '../global/endpoints';
 import path from 'path';
+
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
+const isDev = process.env.NODE_ENV === 'development';
+
+const preloadFile = path.resolve(__dirname, './preload.js');
+const htmlFile = path.resolve(__dirname, './index.html');
 app.on("window-all-closed", () => {
   if(process.platform !== "darwin"){
     app.quit();
@@ -14,7 +18,6 @@ httpLikeIPC.TokenGetByName.listener((request) => {
     token: 'hogehoge' + request.tokenName,
   };
 })
-const preloadFile = path.resolve(__dirname, './preload.js');
 app.on("ready", () => {
   // kiosk
   const mainWindow = new BrowserWindow({
@@ -41,10 +44,9 @@ app.on("ready", () => {
   if (isDev) {
     mainWindow.loadURL('http://localhost:3000');
   } else {
-    mainWindow.loadFile('index.html');
+    mainWindow.loadFile(path.resolve('./dist/index.html'));
   }
-
-  mainWindow.setMenu(null);
+  // mainWindow.setMenu(null);
   // dev 環境
   if (isDev) {
     mainWindow.webContents.openDevTools();
