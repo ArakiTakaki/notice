@@ -3,7 +3,7 @@ interface Command<T> {
   data: T;
 }
 
-export const createCommand = <T extends any>(commandName: string) => {
+export const createCommand = <T>(commandName: string) => {
   return {
     listener: (args: Command<T>, cb: (args: T) => void) => {
       if (args.command === commandName) {
