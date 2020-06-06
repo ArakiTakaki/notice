@@ -58,6 +58,7 @@ export const Toast = (
     secondaryText?: string;
   }
 ) => {
+  console.log(props);
   const [isHide, setHide] = useState(true);
   useEffect(() => {
     setTimeout(() => {
