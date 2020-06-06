@@ -5,7 +5,6 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node scripts/webpack/index.ts -d",
-    "start:prd": "electron dist/index.js",
     "prebuild": "rimraf dist",
     "build": "ts-node scripts/webpack/index.ts",
     "release:win": "electron-builder --windows",

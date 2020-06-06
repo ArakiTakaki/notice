@@ -1,7 +1,6 @@
 import * as webpack from 'webpack';
 import { PATH } from '../../../constants/dirPath';
 
-
 /**
  * electron自体のBuildタスク
  */

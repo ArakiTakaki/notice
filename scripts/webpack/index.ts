@@ -11,22 +11,36 @@ const browser = webpackRender(isDevelopment);
 const main = webpackBrowser(isDevelopment);
 const preload = webpackPreload(isDevelopment);
 
+const log = (error: Error | null, stdout: string, stderr: string) => {
+  console.log(stdout);
+  console.error(stderr);
+  error && console.error(error);
+  process.exit();
+};
+
 const devTask = async () => {
   Promise.all([
     devServerProcess(),
     buildProcess(main, false),
     buildProcess(preload, false),
   ]).then(() => {
-    exec('yarn electron src/electron/index.js');
+    // todo spawn で書き換え
+    exec('yarn electron src/electron/index.js', log);
   }).catch(() => {
     logger.fatal('dev_server_process build fail')
   })
 }
 
-const buildTask = () => {
-  buildProcess(main);
-  buildProcess(browser);
-  buildProcess(preload, false);
+const buildTask = async () => {
+  await Promise.all([
+    buildProcess(main),
+    buildProcess(browser),
+    buildProcess(preload),
+  ]);
+
+  exec('yarn release:win', log);
+  exec('yarn release:mac', log);
+  exec('yarn release:linux', log);
 }
 
 const mainProcess = () => {
