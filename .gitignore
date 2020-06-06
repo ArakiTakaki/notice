@@ -2,3 +2,4 @@ node_modules
 dist
 log
 src/electron/index.js
+yarn-error.log
