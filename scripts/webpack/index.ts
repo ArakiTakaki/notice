@@ -3,13 +3,17 @@ import { webpackRender } from './config/renderer';
 import { webpackBrowser } from './config/main';
 import { devServerProcess } from './process/devServerProsses';
 import { buildProcess } from './process/buildProcess';
-import { exec } from 'child_process';
+import { exec, spawn } from 'child_process';
 import { webpackPreload } from './config/preload';
 import logger from '../../src/global/logger';
+import path from 'path';
 const isDevelopment: boolean = command.development;
 const browser = webpackRender(isDevelopment);
 const main = webpackBrowser(isDevelopment);
 const preload = webpackPreload(isDevelopment);
+
+
+
 
 const log = (error: Error | null, stdout: string, stderr: string) => {
   console.log(stdout);
@@ -25,7 +29,15 @@ const devTask = async () => {
     buildProcess(preload, false),
   ]).then(() => {
     // todo spawn で書き換え
-    exec('yarn electron src/electron/index.js', log);
+    const cli = path.resolve('node_modules/electron/cli.js')
+    const entry = path.resolve('src/electron/index.js');
+    const stream = spawn('node', [cli, entry]);
+    stream.stdout.on('data', (chunk) => {
+      console.log(chunk.toString());
+    });
+    stream.once('close', () => {
+      process.exit();
+    });
   }).catch(() => {
     logger.fatal('dev_server_process build fail')
   })
