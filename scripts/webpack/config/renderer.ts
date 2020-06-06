@@ -15,7 +15,7 @@ export const webpackRender = (isDev: boolean): webpack.Configuration & {
     renderer: PATH.TYPESCRIPTS.BROWSER,
   },
   devtool: isDev ? 'inline-source-map' : undefined,
-  target: 'web',
+  target: 'electron-renderer',
   output: {
     path: PATH.WEBPACK.OUTPUT_PATH,
     filename: '[name].js',
@@ -56,6 +56,5 @@ export const webpackRender = (isDev: boolean): webpack.Configuration & {
     contentBase: PATH.WEBPACK.OUTPUT_PATH,
     host: '0.0.0.0',
     port: 3000,
-    http2: true,
   }
 });

@@ -20,6 +20,9 @@ app.on("ready", () => {
     height: 600,
     x: 0,
     y: 0,
+    webPreferences: {
+      nodeIntegration: true,
+    }
   });
 
   const screen = require("electron").screen;

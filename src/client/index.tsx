@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import { GlobalStyles } from './utils/GlobalStyles';
 import { List } from './components/List';
 import { Toast } from './components/Toast';
+import { httpLikeIPC } from '../global/endpoints';
 
 const Main: React.SFC = () => {
+  console.log(httpLikeIPC.TokenGetByName.fetch);
   return (
     <>
       <GlobalStyles />
