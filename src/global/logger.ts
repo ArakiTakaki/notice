@@ -10,5 +10,4 @@ const logger = pino({
     asObject: isBrowser,
   }
 });
-//  const pino = require('pino')({browser: {asObject: true}})
 export default logger;
