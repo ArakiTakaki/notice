@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import DataStore from 'nedb-promises';
 
 type ITokenType = 'YouTube' | 'anime';
