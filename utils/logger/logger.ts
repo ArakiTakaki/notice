@@ -1,6 +1,6 @@
 import { PATH } from "../../constants/dirPath";
 import { resolve } from 'path';
-import fs from 'fs';
+import * as fs from 'fs';
 
 export enum LOG_LEVEL {
   FATAL = 0,

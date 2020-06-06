@@ -6,8 +6,7 @@ interface MyWindow extends Window {
 
 declare global {
   interface Window {
-    window: MyWindow;
+    api: typeof injectionAPI;
   }
 }
-
 declare var window: MyWindow;

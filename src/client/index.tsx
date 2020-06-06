@@ -5,6 +5,7 @@ import { List } from './components/List';
 import { Toast } from './components/Toast';
 // import { httpLikeIPC } from '../global/endpoints';
 
+console.log(window.api.TokenGetByName);
 const Main: React.SFC = () => {
   // httpLikeIPC.TokenGetByName.fetch({tokenName: 'hfuga' }).then((res) => {
   //   console.log(res);

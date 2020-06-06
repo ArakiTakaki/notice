@@ -1,5 +1,5 @@
-import webpackDevServer from 'webpack-dev-server';
-import webpack from 'webpack';
+import * as webpackDevServer from 'webpack-dev-server';
+import * as webpack from 'webpack';
 
 export const webpackAsync = (config: webpack.Configuration, isWatch: boolean = false): Promise<{status: webpack.Stats, webpack: webpack.Compiler.Watching | webpack.Compiler}> => {
   return new Promise((resolve, reject) => {

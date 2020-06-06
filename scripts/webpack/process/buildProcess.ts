@@ -1,4 +1,4 @@
-import webpack from 'webpack';
+import * as webpack from 'webpack';
 import { webpackAsync } from '../util/polyfill';
 import { logger, LOG_LEVEL } from '../../../utils/logger/logger';
 
