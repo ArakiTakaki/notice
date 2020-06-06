@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { GlobalStyles } from './utils/GlobalStyles';
 import { List } from './components/List';
 import { Toast } from './components/Toast';

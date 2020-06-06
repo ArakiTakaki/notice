@@ -9,13 +9,3 @@ const injectionObject = {
   api: injectionAPI
 } as const;
 contextBridge.exposeInMainWorld('api', injectionObject);
-contextBridge.exposeInMainWorld('logger', {
-  logger: (hoge: string) => console.log(hoge),
-});
-
-
-process.once('loaded', () => {
-  console.log('---- preload.js loaded ----');
-  window.process = process;
-  global.process = process;
-});

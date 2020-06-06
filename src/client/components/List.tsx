@@ -1,12 +1,12 @@
 /** @jsx jsx */
-import React from 'react';
+import { ReactNode } from 'react';
 import { jsx } from '@emotion/core'
 import { LIST_COMPONENT_ERROR } from '../constants/errors'
 
 export const List = (props: {
   verticalMargin: number;
   horizontalMargin: number;
-  children: React.ReactNode[];
+  children: ReactNode[];
 }) => {
   if (props.verticalMargin < 0) throw new Error(LIST_COMPONENT_ERROR);
   if (props.horizontalMargin < 0) throw new Error(LIST_COMPONENT_ERROR);
