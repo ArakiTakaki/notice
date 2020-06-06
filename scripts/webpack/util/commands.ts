@@ -1,7 +1,4 @@
 import * as Commander from 'commander';
-interface ICommands {
-  development: boolean;
-}
 const program = new Commander.Command();
 
 program

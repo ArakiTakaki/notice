@@ -1,5 +1,5 @@
-import webpack from 'webpack';
-import devServer from 'webpack-dev-server';
+import * as webpack from 'webpack';
+import * as devServer from 'webpack-dev-server';
 import { PATH } from '../../../constants/dirPath';
 const HtmlPlugin = require('html-webpack-plugin');
 
@@ -56,6 +56,5 @@ export const webpackRender = (isDev: boolean): webpack.Configuration & {
     contentBase: PATH.WEBPACK.OUTPUT_PATH,
     host: '0.0.0.0',
     port: 3000,
-    http2: true,
   }
 });

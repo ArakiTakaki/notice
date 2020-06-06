@@ -1,14 +1,16 @@
-import webpack from 'webpack';
+import * as webpack from 'webpack';
 import { webpackAsync } from '../util/polyfill';
-import { logger, LOG_LEVEL } from '../../../utils/logger/logger';
+import logger from '../../../src/global/logger';
 
 export const buildProcess = async (config: webpack.Configuration, isWatch: boolean = false) => {
-  logger(LOG_LEVEL.TRACE, 'webpack_build', config.name || '', 'start');
+  const child = logger.child({webpackName: config.name});
+  child.info('start');
   const status = await webpackAsync(config, isWatch).catch((error) => {
-    logger(LOG_LEVEL.FATAL, 'webpack_build', config.name || '', 'fatal');
+    child.fatal('build fail')
     throw error;
   });
-  logger(LOG_LEVEL.TRACE, 'webpack_build', config.name || '', 'stop');
-  logger(LOG_LEVEL.INFO, 'webpack_build', config.name || '', 'done');
+  const time = (status.status.endTime || 0) - (status.status.startTime || 0);
+  child.info('end');
+  child.info(`${time / 1000}s`)
   return status;
 }

@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 
 const BASE = path.resolve();
 export const PATH = {
@@ -11,6 +11,7 @@ export const PATH = {
   },
   TYPESCRIPTS: {
     ELECTRON: path.resolve(BASE, 'src', 'electron', 'index.ts'),
+    PRELOAD: path.resolve(BASE, 'src', 'preload', 'index.ts'),
     BROWSER: path.resolve(BASE, 'src', 'client','index.tsx'),
   },
   HTML: {

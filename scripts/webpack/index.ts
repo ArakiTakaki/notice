@@ -3,26 +3,56 @@ import { webpackRender } from './config/renderer';
 import { webpackBrowser } from './config/main';
 import { devServerProcess } from './process/devServerProsses';
 import { buildProcess } from './process/buildProcess';
-import { logger, LOG_LEVEL } from '../../utils/logger/logger';
-import { exec } from 'child_process';
+import { exec, spawn } from 'child_process';
+import { webpackPreload } from './config/preload';
+import logger from '../../src/global/logger';
+import path from 'path';
 const isDevelopment: boolean = command.development;
 const browser = webpackRender(isDevelopment);
 const main = webpackBrowser(isDevelopment);
+const preload = webpackPreload(isDevelopment);
+
+
+
+
+const log = (error: Error | null, stdout: string, stderr: string) => {
+  console.log(stdout);
+  console.error(stderr);
+  error && console.error(error);
+  process.exit();
+};
 
 const devTask = async () => {
   Promise.all([
-    await devServerProcess(),
-    await buildProcess(main, true),
+    devServerProcess(),
+    buildProcess(main, false),
+    buildProcess(preload, false),
   ]).then(() => {
-    exec('yarn electron src/electron/index.js');
+    // todo spawn で書き換え
+    const cli = path.resolve('node_modules/electron/cli.js')
+    const entry = path.resolve('src/electron/index.js');
+    const stream = spawn('node', [cli, entry]);
+    stream.stdout.on('data', (chunk) => {
+      console.log(chunk.toString());
+    });
+    stream.once('close', () => {
+      process.exit();
+    });
   }).catch(() => {
-    logger(LOG_LEVEL.FATAL, 'DEV_SERVER_PROCESS', 'index.ts', 'fail to build')
+    logger.fatal('dev_server_process build fail')
   })
 }
 
-const buildTask = () => {
-  buildProcess(main);
-  buildProcess(browser);
+const buildTask = async () => {
+  await Promise.all([
+    buildProcess(main),
+    buildProcess(browser),
+    buildProcess(preload),
+  ]);
+
+  exec('yarn release:win', log);
+  exec('yarn release:mac', log);
+  exec('yarn release:linux', log);
 }
 
 const mainProcess = () => {

@@ -1,0 +1,5 @@
+export const COLORS = {
+  BACKGROUND: 0xEBECF0,
+  LIGHT: 0xFFF,
+  SHADOW: 0xBABECC,
+};
