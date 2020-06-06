@@ -836,13 +836,6 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/nedb@^1.8.9":
-  version "1.8.9"
-  resolved "https://registry.yarnpkg.com/@types/nedb/-/nedb-1.8.9.tgz#3cb80a94dfe41bea1dc33c4ea39cd4e7f754abc4"
-  integrity sha512-w9Tl3DQCkdT0Ghes+PKhe+3/pZppBXuFFpSCjPJbb2KE3DjYmUpEyCYzjrAYlT9Y1TndnbbnChzkax2h/JorVQ==
-  dependencies:
-    "@types/node" "*"
-
 "@types/node@*":
   version "14.0.6"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.6.tgz#f9e178b2da31a4b0ec60b64649e244c31ce18daf"
@@ -5351,6 +5344,13 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
+
+nedb-promises@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/nedb-promises/-/nedb-promises-4.0.3.tgz#136df5254f6c3052e97547fc0403a92492d8cc11"
+  integrity sha512-NzepLVjy/Vgl5lvlhO6nze2O4GsPUroONP97fRZKPlIbjt6dV7Y5CXMmPQBI6H3Q6whG8kubFOQXJkMAXIUF3w==
+  dependencies:
+    nedb "^1.8.0"
 
 nedb@^1.8.0:
   version "1.8.0"
