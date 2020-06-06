@@ -1,4 +1,4 @@
-import { createCommand } from './makeListener';
+import { createCommand } from '../soket';
 type ITokenName = 'github' | 'anime';
 
 export const ipcCommands = {
