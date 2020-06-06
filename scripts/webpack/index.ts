@@ -3,10 +3,9 @@ import { webpackRender } from './config/renderer';
 import { webpackBrowser } from './config/main';
 import { devServerProcess } from './process/devServerProsses';
 import { buildProcess } from './process/buildProcess';
-import { logger } from '../../utils/logger/logger';
 import { exec } from 'child_process';
 import { webpackPreload } from './config/preload';
-import { LOG_LEVEL } from '../../utils/logger/enum';
+import logger from '../../src/global/logger';
 const isDevelopment: boolean = command.development;
 const browser = webpackRender(isDevelopment);
 const main = webpackBrowser(isDevelopment);
@@ -20,7 +19,7 @@ const devTask = async () => {
   ]).then(() => {
     exec('yarn electron src/electron/index.js');
   }).catch(() => {
-    logger(LOG_LEVEL.FATAL, 'DEV_SERVER_PROCESS', 'index.ts', 'fail to build')
+    logger.fatal('dev_server_process build fail')
   })
 }
 

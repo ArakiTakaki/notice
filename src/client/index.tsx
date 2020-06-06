@@ -3,6 +3,9 @@ import * as ReactDOM from 'react-dom';
 import { GlobalStyles } from './utils/GlobalStyles';
 import { List } from './components/List';
 import { Toast } from './components/Toast';
+import logger from '../global/logger';
+
+logger.info('hogehoge');
 
 window.api.TokenGetByName({ tokenName: 'hogehoge' })
   .then((res) => {
