@@ -1,6 +1,7 @@
 import * as webpack from 'webpack';
 import { webpackAsync } from '../util/polyfill';
-import { logger, LOG_LEVEL } from '../../../utils/logger/logger';
+import { logger } from '../../../utils/logger/logger';
+import { LOG_LEVEL } from '../../../utils/logger/enum';
 
 export const buildProcess = async (config: webpack.Configuration, isWatch: boolean = false) => {
   logger(LOG_LEVEL.TRACE, 'webpack_build', config.name || '', 'step:start', true);

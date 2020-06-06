@@ -1,15 +1,7 @@
 import { PATH } from "../../constants/dirPath";
 import { resolve } from 'path';
 import * as fs from 'fs';
-
-export enum LOG_LEVEL {
-  FATAL = 0,
-  ERROR = 1,
-  WARN = 2,
-  INFO = 3,
-  DEBUG = 4,
-  TRACE = 5,
-};
+import { LOG_LEVEL } from "./enum";
 
 // INFO  2015-10-30 15:44:01,836 [http-8080-4] START - /path/to/example is Called from getApplication.
 export const logger = (level: LOG_LEVEL, logName: string, logTarget: string, text: string, isOutput: boolean = false) => {

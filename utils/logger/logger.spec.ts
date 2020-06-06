@@ -1,4 +1,5 @@
-import { logger, LOG_LEVEL } from "./logger";
+import { logger } from "./logger";
+import { LOG_LEVEL } from "./enum";
 jest.mock('fs');
 
 const cases = [
