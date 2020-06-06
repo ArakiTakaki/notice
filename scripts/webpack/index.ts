@@ -5,14 +5,17 @@ import { devServerProcess } from './process/devServerProsses';
 import { buildProcess } from './process/buildProcess';
 import { logger, LOG_LEVEL } from '../../utils/logger/logger';
 import { exec } from 'child_process';
+import { webpackPreload } from './config/preload';
 const isDevelopment: boolean = command.development;
 const browser = webpackRender(isDevelopment);
 const main = webpackBrowser(isDevelopment);
+const preload = webpackPreload(isDevelopment);
 
 const devTask = async () => {
   Promise.all([
-    await devServerProcess(),
-    await buildProcess(main, true),
+    devServerProcess(),
+    buildProcess(main, false),
+    buildProcess(preload, false),
   ]).then(() => {
     exec('yarn electron src/electron/index.js');
   }).catch(() => {
@@ -23,6 +26,7 @@ const devTask = async () => {
 const buildTask = () => {
   buildProcess(main);
   buildProcess(browser);
+  buildProcess(preload, false);
 }
 
 const mainProcess = () => {

@@ -11,6 +11,7 @@ export const PATH = {
   },
   TYPESCRIPTS: {
     ELECTRON: path.resolve(BASE, 'src', 'electron', 'index.ts'),
+    PRELOAD: path.resolve(BASE, 'src', 'preload', 'index.ts'),
     BROWSER: path.resolve(BASE, 'src', 'client','index.tsx'),
   },
   HTML: {

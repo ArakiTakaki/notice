@@ -5,20 +5,17 @@ import { PATH } from '../../../constants/dirPath';
 /**
  * electron自体のBuildタスク
  */
-export const webpackBrowser = (isDev:boolean): webpack.Configuration => ({
-  name: 'electron:main',
+export const webpackPreload = (isDev:boolean): webpack.Configuration => ({
+  name: 'electron:preload',
   mode: isDev ? 'development' : 'production',
   entry: {
-    index: PATH.TYPESCRIPTS.ELECTRON,
+    preload: PATH.TYPESCRIPTS.PRELOAD,
   },
   devtool: isDev ? 'inline-source-map' : undefined,
-  node: {
-    __dirname: true
-  },
-  target: 'electron-main',
+  target: 'electron-preload',
   output: {
     path: isDev ? PATH.WEBPACK.ELECTRON_DEV : PATH.WEBPACK.OUTPUT_PATH,
-    filename: '[name].js',
+    filename: 'preload.js',
   },
   module: {
     rules: [

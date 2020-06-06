@@ -1,18 +1,20 @@
-import {app, BrowserWindow} from 'electron';
+import { app, BrowserWindow } from 'electron';
 import isDev from 'electron-is-dev';
+import { httpLikeIPC } from '../global/endpoints';
+import path from 'path';
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
-
-// window.gcをonにする
-//app.commandLine.appendSwitch('js-flags', '--expose-gc');
-
-// 画面の拡大縮小制御
-// webFrame.setZoomLevelLimets(1, 1);
 app.on("window-all-closed", () => {
   if(process.platform !== "darwin"){
     app.quit();
   }
 });
-
+httpLikeIPC.TokenGetByName.listener((request) => {
+  console.log('request', request);
+  return {
+    token: 'hogehoge' + request.tokenName,
+  };
+})
+const preloadFile = path.resolve(__dirname, './preload.js');
 app.on("ready", () => {
   // kiosk
   const mainWindow = new BrowserWindow({
@@ -21,7 +23,9 @@ app.on("ready", () => {
     x: 0,
     y: 0,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: preloadFile,
     }
   });
 
@@ -37,7 +41,7 @@ app.on("ready", () => {
   if (isDev) {
     mainWindow.loadURL('http://localhost:3000');
   } else {
-    mainWindow.loadFile('dist/index.html');
+    mainWindow.loadFile('index.html');
   }
 
   mainWindow.setMenu(null);
