@@ -17,7 +17,6 @@ export const webpackAsync = (config: webpack.Configuration, isWatch: boolean = f
     if (process instanceof webpack.Compiler) {
       if (isWatch) {
         process.watch({ poll: true }, () => {
-          console.log('watch');
         });
       }
     }
@@ -25,17 +24,16 @@ export const webpackAsync = (config: webpack.Configuration, isWatch: boolean = f
 };
 
 export const startDevServer = (config: webpack.Configuration & { devServer: webpackDevServer.Configuration }) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const devServer = new webpackDevServer(webpack(config));
     devServer.listen(
       config.devServer.port || 3000,
       config.devServer.host || '0.0.0.0',
       ((error) => {
         if (error != null) {
-          console.log(error);
+          reject(error);
           return;
         }
-        console.log('started dev server');
         resolve();
       }
     ));

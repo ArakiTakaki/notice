@@ -1,9 +1,9 @@
 import * as webpack from 'webpack';
 import { webpackAsync } from '../util/polyfill';
-import logger from '../../../src/global/logger';
+import { createWebpackLogger } from '../../../src/global/logger';
 
 export const buildProcess = async (config: webpack.Configuration, isWatch: boolean = false) => {
-  const child = logger.child({webpackName: config.name});
+  const child = createWebpackLogger(config.name || 'not name');
   child.info('start');
   const status = await webpackAsync(config, isWatch).catch((error) => {
     child.fatal('build fail')

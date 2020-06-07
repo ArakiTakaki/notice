@@ -1,4 +1,7 @@
-import { ipcRenderer, ipcMain } from 'electron';
+import { ipcRenderer, ipcMain, IpcMainEvent, IpcRendererEvent } from 'electron';
+import { isPreload } from '../constants';
+
+const ipc = isPreload ? ipcRenderer : ipcMain
 
 /**
  * HTTPみたいな形式
@@ -9,7 +12,7 @@ const ipcFetcher = <IRequest, IResponse>(endpoint: string, props: IRequest): Pro
     const timeoutId = setTimeout(() => {
       reject();
     }, 1000);
-    ipcRenderer.once(endpoint, (_, args: IResponse) => {
+    ipc.once(endpoint, (_: IpcMainEvent | IpcRendererEvent, args: IResponse) => {
       clearTimeout(timeoutId);
       resolve(args);
     });
@@ -18,7 +21,7 @@ const ipcFetcher = <IRequest, IResponse>(endpoint: string, props: IRequest): Pro
 };
 
 const ipcReceiver = <Request, Response>(endpoint: string, cb: (args: Request) => Response) => {
-  ipcMain.on(endpoint, (event, args: Request) => {
+  ipc.on(endpoint, (event: IpcMainEvent | IpcRendererEvent, args: Request) => {
     event.sender.send(endpoint, cb(args));
   });
 };
