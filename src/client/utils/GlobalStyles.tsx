@@ -11,7 +11,7 @@ export const GlobalStyles = () => (
       -moz-osx-font-smoothing: grayscale;
       -webkit-font-smoothing: antialiased;
       font-smoothing: antialiased;
-      color: #333;
+      color: #666;
     }
     html {
       font-size: 10px;

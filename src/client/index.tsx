@@ -32,7 +32,7 @@ const Main: React.SFC = () => {
       </div>
       <h1>hoge</h1>
       <div style={{margin: 100, width: 200}}>
-        <Button>同意する</Button>
+        <Button>I AGREE</Button>
       </div>
       <div style={{margin: 100, width: 200}}>
         <Button>同意しない</Button>

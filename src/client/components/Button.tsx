@@ -1,64 +1,63 @@
 /** @jsx jsx */
 import styled from '@emotion/styled';
-import { createBoxShadow, numHexToRgbaArray } from '../utils/styling';
+import { createBoxShadow } from '../utils/styling';
 
-const brightColor = 0xFF7F9D;
-const baseColorString = `rgba(${numHexToRgbaArray(0xEF486F, 0.9).join(', ')})`
-const hoverColorString = `rgba(${numHexToRgbaArray(0xEF486F, 1).join(', ')})`
-
-const creatButtonShadow = (alpha: number) => createBoxShadow([
+const creatButtonShadow = (isHover: boolean) => createBoxShadow([
   {
-    x: 0,
-    y: 0,
-    blur: 0,
+    x: -1,
+    y: -1,
     inset: true,
-    scale: 1,
+    blur: 3,
     color: {
       hex: 0xFFFFFF,
-      opacity: 0.5,
-    },
+      opacity: 1,
+    }
   },
   {
     x: 1,
-    y: 2,
-    blur: 10,
-    scale: 4,
+    y: 1,
+    inset: true,
+    blur: 3,
     color: {
-      hex: brightColor,
-      opacity: alpha / 2
-    },
+      hex: 0x000000,
+      opacity: 0.1,
+    }
   },
   {
-    x: 10,
-    y: 20,
-    blur: 40,
-    scale: 4,
+    x: -6,
+    y: -6,
+    blur: 10,
     color: {
-      hex: brightColor,
-      opacity: 0.1,
-    },
+      hex: 0xFFFFFF,
+      opacity: isHover ? 1 : 0.8,
+    }
+  },
+  {
+    x: 6,
+    y: 6,
+    blur: 10,
+    color: {
+      hex: 0x999999,
+      opacity: isHover ? 0.5 : 0.2,
+    }
   }
 ]);
 
-const boxShadow = creatButtonShadow(0.5);
-const boxShadowHover = creatButtonShadow(1);
+const boxShadow = creatButtonShadow(false);
+const boxShadowHover = creatButtonShadow(true);
 export const Button = styled.button(() => {
   return {
     cursor: 'pointer',
     width: '100%',
     padding: '5px 10px',
-    backgroundColor: baseColorString,
-    color: '#EEE',
-    fontWeight: 600,
+    fontWeight: 300,
     fontSize: '1.8rem',
     letterSpacing: 1.5,
     boxShadow,
-    borderRadius: 7,
+    borderRadius: 10,
     transitionDuration: '200ms',
     '&:hover': {
       boxShadow: boxShadowHover,
-      backgroundColor: hoverColorString,
-      color: '#FFF',
-    }
+    },
   };
 });

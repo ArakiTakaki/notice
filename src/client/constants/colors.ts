@@ -9,7 +9,7 @@ export const GRADATION = {
   BACKGROUND_BASE: createLinerGradient([
     {
       percentage: 1,
-      color: 0xDDEBF1,
+      color: 0xf3f0f1,
       alpha: 1,
     },
     {
