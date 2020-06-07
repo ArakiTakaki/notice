@@ -1,8 +1,6 @@
 import { contextBridge } from 'electron';
 import { httpLikeIPC } from '../global/endpoints';
-import { preloadLogger } from '../global/logger';
 process.env.ELECTRON_PROCESS = 'preload';
-preloadLogger.info('load to preload');
 
 export const injectionAPI = {
   TokenGetByName: httpLikeIPC.TokenGetByName.fetch,
@@ -14,4 +12,3 @@ const injectionObject = {
 };
 
 contextBridge.exposeInMainWorld('api', injectionObject.api);
-preloadLogger.info('end to preload');

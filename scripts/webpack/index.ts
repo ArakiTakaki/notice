@@ -12,9 +12,6 @@ const browser = webpackRender(isDevelopment);
 const main = webpackBrowser(isDevelopment);
 const preload = webpackPreload(isDevelopment);
 
-
-
-
 const log = (error: Error | null, stdout: string, stderr: string) => {
   console.log(stdout);
   console.error(stderr);
@@ -33,7 +30,7 @@ const devTask = async () => {
     const entry = path.resolve('src/electron/index.js');
     const stream = spawn('node', [cli, entry]);
     stream.stdout.on('data', (chunk) => {
-      console.log(chunk.toString());
+      process.stdout.write(chunk.toString());
     });
     stream.once('close', () => {
       process.exit();

@@ -25,7 +25,10 @@ export const webpackAsync = (config: webpack.Configuration, isWatch: boolean = f
 
 export const startDevServer = (config: webpack.Configuration & { devServer: webpackDevServer.Configuration }) => {
   return new Promise((resolve, reject) => {
-    const devServer = new webpackDevServer(webpack(config));
+    const devServer = new webpackDevServer(webpack(config), {
+      clientLogLevel: 'trace',
+      noInfo: true,
+    });
     devServer.listen(
       config.devServer.port || 3000,
       config.devServer.host || '0.0.0.0',
