@@ -20,7 +20,7 @@ export interface ILinerGradientTo {
 export interface ILinerGradientColor {
   percentage: number;
   color: number;
-  alpha: number;
+  alpha?: number;
 }
 
 /**
@@ -35,35 +35,49 @@ export const createLinerGradient = (colors: ILinerGradientColor[], from: ILinerG
 
   const strFrom = FromMapper.length === 0 ? null : `to ${FromMapper.join(' ')}`;
   const srtColors = colors.map(({percentage, color, alpha}) => {
+
     return `rgba(${numHexToRgbaArray(color, alpha).join(',')}) ${percentage * 100}%`
   });;
   const value =  [strFrom, srtColors].filter(value => value != null).join(', ');
   return `linear-gradient(${value})`;
-}
+};
 
 interface IBoxShadowProps {
   x?: number;
   y?: number;
   blur?: number;
   scale?: number;
+  inset?: boolean;
   color: {
     hex: number;
     opacity?: number;
   };
-};
+}
 
 const createBoxShadowInitialProps: Required<IBoxShadowProps> =  {
   x: 0,
   y: 0,
   blur: 0,
   scale: 0,
+  inset: false,
   color: {
     hex: 0x000000,
     opacity: 1,
   }
-}
-export const createBoxShadow = (props: IBoxShadowProps) => {
+};
+
+/**
+ * box shadow
+ */
+const _createBoxShadow = (props: IBoxShadowProps) => {
   const { x, y, blur, scale, color } = {...createBoxShadowInitialProps, ...props, color: {...createBoxShadowInitialProps.color, ...props.color }};
   const rgba = `rgba(${numHexToRgbaArray(color.hex, color.opacity).join(', ')})`;
-  return `${x}px ${y}px ${blur}px ${scale}px ${rgba}`;
+  return `${props.inset ? 'inset' : ''} ${x}px ${y}px ${blur}px ${scale}px ${rgba}`;
+}
+
+export const createBoxShadow = (props: IBoxShadowProps | IBoxShadowProps[]) => {
+  if (Array.isArray(props)) {
+    return props.map(value => _createBoxShadow(value)).join(', ');
+  }
+  return _createBoxShadow(props);
 }

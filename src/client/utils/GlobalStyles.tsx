@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Global, css } from '@emotion/core';
 import emotionReset from 'emotion-reset';
+import { GRADATION } from '../constants/colors';
 
 export const GlobalStyles = () => (
   <Global styles={css`
@@ -21,6 +22,7 @@ export const GlobalStyles = () => (
       font-size: 1.6rem;
       width: 100%;
       height: 100%;
+      background: ${GRADATION.BACKGROUND_BASE};
     }
     img {
       display: block;

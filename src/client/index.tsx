@@ -3,15 +3,16 @@ import * as ReactDOM from 'react-dom';
 import { GlobalStyles } from './utils/GlobalStyles';
 import { List } from './components/List';
 import { Toast } from './components/Toast';
-import logger from '../global/logger';
+import { Button } from './components/Button';
+import { rendererLogger, createLoggerTag } from '../global/logger';
 
-logger.info('hogehoge');
-
+const mainLog = rendererLogger.child(createLoggerTag('main component'));
 window.api.TokenGetByName({ tokenName: 'hogehoge' })
   .then((res) => {
     console.log(res.token);
   });
 const Main: React.SFC = () => {
+  mainLog.info('exec <mai></mai>n');
   return (
     <>
       <GlobalStyles />
@@ -30,6 +31,12 @@ const Main: React.SFC = () => {
         </List>
       </div>
       <h1>hoge</h1>
+      <div style={{margin: 100, width: 200}}>
+        <Button>同意する</Button>
+      </div>
+      <div style={{margin: 100, width: 200}}>
+        <Button>同意しない</Button>
+      </div>
       <List verticalMargin={10} horizontalMargin={100}>
         <h1>hogeaaahoge</h1>
         <h1>hogeaaahoge</h1>
