@@ -1,26 +1,34 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import { createNeumorphismOuter } from '../utils/neumorphism';
 import { useState, useEffect } from 'react';
 // TODO 構成考える。
 
 const toastWrap = css({
   position: 'fixed',
-  top: 10,
-  right: 10,
+  top: 50,
+  right: 40,
   borderRadius: 20,
   overflow: 'hidden',
   padding: 5,
   visibility: 'visible',
-  opacity: 1,
-  transitionDuration: '250ms',
-  transitionProperty: 'box-shadow, visibility, opacity',
-}, createNeumorphismOuter(5));
+  transitionDuration: '1000ms',
+  transitionTimingFunction: 'ease-out',
+  transitionProperty: 'box-shadow, visibility',
+  ['& > *']: {
+    transitionDelay: '250ms',
+    transitionDuration: '250ms',
+    transitionTimingFunction: 'ease-in',
+    transitionProperty: 'opacity',
+    opacity: 1,
+  }
+});
 
 const toastWrapHide = css({
-  opacity: 0,
-  visibility: 'hidden'
-}, createNeumorphismOuter(0));
+  visibility: 'hidden',
+  ['& > *']: {
+    opacity: 0,
+  }
+});
 
 const toastContent = css({
   display: 'flex',
@@ -37,16 +45,6 @@ const toastContent = css({
   },
 });
 
-/**
- * icon?
- * title
- * message?
- * onClickPrimary?
- * primaryText?
- * onClickSecondary?
- * secondaryText?
- *
- */
 export const Toast = (
   props: {
     icon?: string;
@@ -66,6 +64,7 @@ export const Toast = (
     }, 1000);
   }, []);
   const style = isHide ? toastWrapHide: {};
+
   return (
     <div css={{
       ...toastWrap,

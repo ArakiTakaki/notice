@@ -16,11 +16,19 @@ const Main: React.SFC = () => {
     <>
       <GlobalStyles />
       <h1>hoge</h1>
-      <List verticalMargin={10} horizontalMargin={100}>
-        <h1>hogeaaahoge</h1>
-        <h1>hogeaaahoge</h1>
-        <h1>hogeaaahoge</h1>
-      </List>
+      <div style={{padding: 20}}>
+        <List verticalMargin={10} horizontalMargin={100}>
+          <div style={{padding: 40}}>
+            <h1>hoge aaa hoge</h1>
+          </div>
+          <div style={{padding: 40}}>
+            <h1>hoge aaa hoge</h1>
+          </div>
+          <div style={{padding: 40}}>
+            <h1>hoge aaa hoge</h1>
+          </div>
+        </List>
+      </div>
       <h1>hoge</h1>
       <List verticalMargin={10} horizontalMargin={100}>
         <h1>hogeaaahoge</h1>
