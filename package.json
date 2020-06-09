@@ -24,6 +24,7 @@
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-transition-group": "^4.4.0",
+    "@types/recoil": "^0.0.0",
     "@types/webpack": "^4.41.15",
     "@types/webpack-dev-server": "^3.11.0",
     "child-process-promise": "^2.2.1",
@@ -55,7 +56,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-spring": "^8.0.27",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "recoil": "^0.0.8"
   },
   "build": {
     "appId": "multi-push-alert",
