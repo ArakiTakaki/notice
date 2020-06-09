@@ -5,6 +5,7 @@ import { List } from './components/List';
 import { rendererLogger, createLoggerTag } from '../global/logger';
 import { Accordion } from './components/Accordion';
 import { RecoilRoot } from 'recoil';
+import {TodoComponent} from './components/Todo';
 
 const mainLog = rendererLogger.child(createLoggerTag('main component'));
 window.api.TokenGetByName({ tokenName: 'hogehoge' })
@@ -49,6 +50,7 @@ const Main: React.SFC = () => {
         <h1>hogeaaahoge</h1>
         <h1>hogeaaahoge</h1>
       </List>
+      <TodoComponent />
     </>
   )
 };

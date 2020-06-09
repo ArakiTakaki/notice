@@ -6,7 +6,18 @@ export interface Task {
   completed: boolean;
 }
 
-const initialTasks: Task[] = [];
+const initialTasks: Task[] = [
+  {
+    id: 'hogehoge',
+    title: 'hogehoge',
+    completed: false,
+  },
+  {
+    id: 'hogehoge2',
+    title: 'hogehoge2',
+    completed: true,
+  },
+];
 
 export const todoState = atom({
   key: 'task',
